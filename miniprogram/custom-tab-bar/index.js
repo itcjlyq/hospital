@@ -1,13 +1,11 @@
 Component({
   data: {
     selected: 0,
-    list: []
-  },
-
-  lifetimes: {
-    attached() {
-      this.refresh();
-    }
+    list: [
+      { pagePath: '/pages/home/index', text: '首页', icon: '🏠' },
+      { pagePath: '/pages/history/list', text: '记录', icon: '📋' },
+      { pagePath: '/pages/center/index', text: '我的', icon: '👤' }
+    ]
   },
 
   pageLifetimes: {
@@ -18,33 +16,14 @@ Component({
 
   methods: {
     refresh() {
-      const role = wx.getStorageSync('userRole') || 'patient';
       const pages = getCurrentPages();
       const route = pages.length ? pages[pages.length - 1].route : '';
-      let list = [];
-      let selected = 0;
-      if (role === 'doctor') {
-        list = [
-          { pagePath: '/pages/doctor/index', text: '首页', icon: '🏠' },
-          { pagePath: '/pages/doctor/center', text: '中心', icon: '👤' }
-        ];
-        if (route === 'pages/doctor/index') {
-          selected = 0;
-        } else if (route === 'pages/doctor/center') {
-          selected = 1;
-        }
-      } else {
-        list = [
-          { pagePath: '/pages/index/index', text: '首页', icon: '🏠' },
-          { pagePath: '/pages/center/index', text: '中心', icon: '👤' }
-        ];
-        if (route === 'pages/index/index') {
-          selected = 0;
-        } else if (route === 'pages/center/index') {
-          selected = 1;
-        }
-      }
-      this.setData({ list, selected });
+      const map = {
+        'pages/home/index': 0,
+        'pages/history/list': 1,
+        'pages/center/index': 2
+      };
+      this.setData({ selected: map[route] === undefined ? 0 : map[route] });
     },
 
     switchTab(e) {

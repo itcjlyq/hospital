@@ -1,0 +1,15 @@
+package com.hospital.wechat.ai;
+
+/**
+ * 大模型调用异常
+ */
+public class AiCallException extends RuntimeException {
+
+    public AiCallException(String message) {
+        super(message);
+    }
+
+    public AiCallException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}

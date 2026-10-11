@@ -1,51 +1,126 @@
-.profile-container {
-  min-height: 100vh;
-  background: #f5fbf9;
-  padding: 24rpx;
-  box-sizing: border-box;
+.page {
+  padding: 24rpx 28rpx 60rpx;
 }
 
 .card {
   background: #fff;
   border-radius: 20rpx;
-  padding: 30rpx;
+  padding: 8rpx 28rpx;
+  margin-bottom: 22rpx;
 }
 
-.title {
-  font-size: 34rpx;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 28rpx;
+.card-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #2e8b7d;
+  padding: 24rpx 0 8rpx;
 }
 
-.form-item {
-  margin-bottom: 30rpx;
+.row {
+  display: flex;
+  align-items: center;
+  min-height: 96rpx;
+  border-bottom: 1rpx solid #f0f4f3;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.column-row {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f4f3;
+}
+
+.column-row:last-child {
+  border-bottom: none;
 }
 
 .label {
+  font-size: 28rpx;
+  color: #333;
+  width: 230rpx;
+  flex-shrink: 0;
+}
+
+.column-row .label {
   display: block;
-  font-size: 26rpx;
-  line-height: 1.5;
-  color: #666;
   margin-bottom: 14rpx;
 }
 
 .input {
-  display: block;
+  flex: 1;
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.column-row .input {
+  text-align: left;
+}
+
+.textarea {
   width: 100%;
-  min-height: 88rpx;
+  min-height: 120rpx;
+  font-size: 28rpx;
   box-sizing: border-box;
-  background: #f7f8fa;
-  border-radius: 14rpx;
-  padding: 22rpx 20rpx;
-  line-height: 1.4;
+}
+
+.gender-group {
+  display: flex;
+  gap: 16rpx;
+}
+
+.gender {
+  padding: 10rpx 40rpx;
+  border: 1rpx solid #cfd8d6;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.gender.active {
+  background: #e8f5f2;
+  border-color: #43A294;
+  color: #2e8b7d;
+}
+
+.picker {
+  flex: 1;
+}
+
+.picker-value {
+  text-align: right;
   font-size: 28rpx;
   color: #333;
 }
 
-.submit-btn {
-  margin-top: 20rpx;
-  background: #43a294;
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 92rpx;
+  border-bottom: 1rpx solid #f0f4f3;
+}
+
+.switch-row .label {
+  width: auto;
+}
+
+.save-btn {
+  margin-top: 14rpx;
+  background: #43A294;
   color: #fff;
-  border-radius: 44rpx;
+  border-radius: 48rpx;
+  font-size: 31rpx;
+}
+
+.save-btn::after {
+  border: none;
+}
+
+.privacy-tip {
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #aab8b5;
 }

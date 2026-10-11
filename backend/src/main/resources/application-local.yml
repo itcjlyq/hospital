@@ -1,0 +1,22 @@
+# 本地开发环境覆盖配置（最小侵入，不修改 application.yml 默认值）
+# 激活方式：
+#   mvn spring-boot:run -Dspring-boot.run.profiles=local
+# 或在 IDE 的 VM options / Program arguments 中指定：--spring.profiles.active=local
+# 未激活时仍使用 application.yml 中的原始远程数据源配置。
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hospital_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 本地无真实微信 appid/secret 时开启 mock 登录，固定 openid，便于联调
+wechat:
+  miniprogram:
+    mock-login-enabled: true
+
+# 本地默认开启 AI mock 应答，无需 key 即可跑通全流程。
+# 要接通真实 DeepSeek：设置环境变量 DEEPSEEK_API_KEY 并将 DEEPSEEK_MOCK 设为 false。
+deepseek:
+  api-key: ${DEEPSEEK_API_KEY:}
+  mock-enabled: ${DEEPSEEK_MOCK:true}

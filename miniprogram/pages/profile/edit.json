@@ -1,5 +1,4 @@
 {
-  "navigationBarTitleText": "个人中心",
-  "navigationBarBackgroundColor": "#43A294",
-  "navigationBarTextStyle": "white"
+  "usingComponents": {},
+  "navigationBarTitleText": "新建档案"
 }

@@ -38,12 +38,10 @@ public class AdminApiController {
         // 白名单：避免任意表名导致的越权查询
         List<Map<String, String>> tables = new ArrayList<>();
         tables.add(label("wx_user", "微信用户"));
-        tables.add(label("patient_record", "患者档案"));
-        tables.add(label("visit_record", "看诊记录"));
-        tables.add(label("online_consultation", "在线问诊"));
-
-        // 测试表（如果你执行了相关 SQL 会显示数据）
-        tables.add(label("visit_record_test_dataset", "看诊测试数据(手机号维度)"));
+        tables.add(label("health_profile", "健康档案"));
+        tables.add(label("triage_session", "AI初筛会话"));
+        tables.add(label("triage_message", "初筛对话消息"));
+        tables.add(label("medical_report", "检查报告记录"));
 
         return ResponseEntity.ok(Map.of("tables", tables));
     }
@@ -106,10 +104,10 @@ public class AdminApiController {
 
     private boolean isAllowedTable(String table) {
         return table.equals("wx_user")
-                || table.equals("patient_record")
-                || table.equals("visit_record")
-                || table.equals("online_consultation")
-                || table.equals("visit_record_test_dataset");
+                || table.equals("health_profile")
+                || table.equals("triage_session")
+                || table.equals("triage_message")
+                || table.equals("medical_report");
     }
 
     private Map<String, String> label(String name, String label) {

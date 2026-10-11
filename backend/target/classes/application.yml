@@ -59,7 +59,16 @@ jwt:
   secret: hospital-wechat-jwt-secret-key-2024-very-long-string-min-32-chars
   expiration: 604800000  # 7天，单位毫秒
 
-# 统一认证密码盐（患者默认密码哈希、后续校验）
+# DeepSeek 大模型配置（key 仅从环境变量 DEEPSEEK_API_KEY 读取）
+deepseek:
+  api-key: ${DEEPSEEK_API_KEY:}
+  base-url: https://api.deepseek.com
+  model: deepseek-chat
+  timeout-seconds: 30
+  temperature: 0.3
+  mock-enabled: ${DEEPSEEK_MOCK:false}
+
+# 统一认证密码盐（历史保留）
 auth:
   password-salt: hospital-auth-demo-salt
 

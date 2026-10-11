@@ -1,0 +1,89 @@
+.page {
+  padding: 28rpx 28rpx 60rpx;
+}
+
+.hint {
+  font-size: 24rpx;
+  color: #8a9c98;
+  padding: 0 8rpx 20rpx;
+}
+
+.profile-card {
+  position: relative;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+}
+
+.name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1f3a36;
+}
+
+.meta {
+  margin-left: 18rpx;
+  font-size: 25rpx;
+  color: #90a09c;
+}
+
+.tags {
+  margin-top: 18rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.tag {
+  font-size: 22rpx;
+  color: #c05a2d;
+  background: #fff4ec;
+  border-radius: 8rpx;
+  padding: 6rpx 16rpx;
+}
+
+.no-risk {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #b0bbb8;
+}
+
+.card-actions {
+  margin-top: 18rpx;
+  text-align: right;
+}
+
+.del {
+  font-size: 24rpx;
+  color: #d9534f;
+}
+
+.empty {
+  text-align: center;
+  color: #aab8b5;
+  padding: 100rpx 0;
+  font-size: 28rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.add-btn {
+  margin-top: 12rpx;
+  background: #43A294;
+  color: #fff;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+}
+
+.add-btn::after {
+  border: none;
+}

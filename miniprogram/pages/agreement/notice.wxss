@@ -1,0 +1,33 @@
+.page {
+  padding: 36rpx 34rpx 60rpx;
+}
+
+.title {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #1f3a36;
+}
+
+.updated {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #aab8b5;
+}
+
+.h {
+  margin-top: 34rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2e8b7d;
+}
+
+.p {
+  margin-top: 14rpx;
+  font-size: 27rpx;
+  color: #4d5d59;
+  line-height: 1.85;
+}
+
+.emph {
+  color: #d9534f;
+}

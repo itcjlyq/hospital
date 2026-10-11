@@ -14,12 +14,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * JWT 请求过滤器
- * 对需要登录的接口进行token验证
+ * 对需要登录的接口进行 token 验证。本系统只有一种身份：微信用户（wx_user）。
  */
 @Slf4j
 @Component
@@ -32,8 +31,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private ObjectMapper objectMapper;
 
     /** 白名单路径（不需要token） */
-    private static final List<String> WHITE_LIST = Arrays.asList(
-            "/api/auth/",
+    private static final List<String> WHITE_LIST = List.of(
             "/api/wx/login",
             "/api/wx/health"
     );
@@ -65,27 +63,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        // 将角色/ID写入request属性，供后续使用
-        String role = jwtUtil.getRoleFromToken(token);
-        request.setAttribute("role", role);
-
-        Long patientId = jwtUtil.getPatientIdFromToken(token);
-        if (patientId != null) {
-            request.setAttribute("patientId", patientId);
-        }
-        Long doctorId = jwtUtil.getDoctorIdFromToken(token);
-        if (doctorId != null) {
-            request.setAttribute("doctorId", doctorId);
-        }
-
-        // 兼容旧接口：统一补充 userId 属性（历史接口还在用）
         Long userId = jwtUtil.getUserIdFromToken(token);
         if (userId == null) {
-            userId = patientId != null ? patientId : doctorId;
+            writeUnauthorized(response, "登录已过期，请重新登录");
+            return;
         }
-        if (userId != null) {
-            request.setAttribute("userId", userId);
-        }
+        request.setAttribute("userId", userId);
 
         filterChain.doFilter(request, response);
     }
@@ -97,4 +80,3 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         response.getWriter().write(objectMapper.writeValueAsString(result));
     }
 }
-

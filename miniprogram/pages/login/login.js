@@ -1,61 +1,63 @@
 // pages/login/login.js
+const { request } = require('../../utils/request');
 const app = getApp();
 
 Page({
   data: {
-    agreed: false
+    agreed: false,
+    loggingIn: false
   },
-
-  onLoad() {},
 
   onShow() {
-    // 每次进入登录页都清理旧登录态，确保重新走微信授权登录
-    wx.removeStorageSync('token');
-    wx.removeStorageSync('userInfo');
-    wx.removeStorageSync('userRole');
-    const currentPatient = wx.getStorageSync('currentPatient');
-    app.globalData.token = null;
-    app.globalData.userInfo = null;
-    app.globalData.currentPatient = currentPatient || null;
+    // 已登录则直接进入首页
+    const token = wx.getStorageSync('token');
+    if (token) {
+      wx.reLaunch({ url: '/pages/home/index' });
+    }
   },
 
-  // 切换协议勾选
   toggleAgree() {
     this.setData({ agreed: !this.data.agreed });
   },
 
-  goPatientLogin() {
+  openAgreement() {
+    wx.navigateTo({ url: '/pages/agreement/notice' });
+  },
+
+  async handleLogin() {
     if (!this.data.agreed) {
-      wx.showToast({ title: '请先阅读并同意用户协议', icon: 'none' });
+      wx.showToast({ title: '请先阅读并同意免责声明与隐私政策', icon: 'none' });
       return;
     }
-    wx.navigateTo({ url: '/pages/patient/login' });
-  },
+    if (this.data.loggingIn) return;
+    this.setData({ loggingIn: true });
+    try {
+      // 1. wx.login 获取临时 code
+      const loginRes = await new Promise((resolve, reject) => {
+        wx.login({ success: resolve, fail: reject });
+      });
+      const code = loginRes.code || 'devtools-mock-code';
 
-  goDoctorLogin() {
-    if (!this.data.agreed) {
-      wx.showToast({ title: '请先阅读并同意用户协议', icon: 'none' });
-      return;
+      // 2. 演示环境：后端开启 mock-login 时接受固定 phoneCode；
+      //    正式环境需改为 <button open-type="getPhoneNumber"> 拿到真实手机号授权 code。
+      const phoneCode = '__DEVTOOLS_MOCK_PHONE__';
+
+      const result = await request({
+        url: '/api/wx/login',
+        method: 'POST',
+        data: { code, phoneCode },
+        showLoading: true
+      });
+      const payload = result.data || {};
+      wx.setStorageSync('token', payload.token || '');
+      wx.setStorageSync('userInfo', payload.userInfo || {});
+      app.globalData.token = payload.token || '';
+      app.globalData.userInfo = payload.userInfo || {};
+      wx.reLaunch({ url: '/pages/home/index' });
+    } catch (err) {
+      console.error('登录失败', err);
+    } finally {
+      this.setData({ loggingIn: false });
     }
-    wx.navigateTo({ url: '/pages/doctor/login' });
-  },
-
-  openUserAgreement() {
-    wx.showModal({
-      title: '用户协议',
-      content: '本协议旨在规范用户在医院服务平台的使用行为，保护用户隐私及合法权益。',
-      showCancel: false,
-      confirmText: '我知道了'
-    });
-  },
-
-  openPrivacyPolicy() {
-    wx.showModal({
-      title: '隐私政策',
-      content: '我们重视您的隐私，您的个人信息仅用于提供本平台医疗服务，不会泄露给第三方。',
-      showCancel: false,
-      confirmText: '我知道了'
-    });
   }
 });
-

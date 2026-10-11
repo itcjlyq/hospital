@@ -1,11 +1,10 @@
-<!-- 自定义 tabBar：患者端 / 医生端各 2 个 Tab -->
+<!-- 自定义 tabBar：首页 / 记录 / 我的 -->
 <view class="tab-bar">
   <view class="tab-bar-inner">
     <view
       wx:for="{{list}}"
-      wx:for-index="idx"
       wx:key="pagePath"
-      class="tab-item {{selected === idx ? 'active' : ''}}"
+      class="tab-item {{selected === index ? 'active' : ''}}"
       data-path="{{item.pagePath}}"
       bindtap="switchTab"
     >

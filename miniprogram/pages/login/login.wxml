@@ -1,47 +1,28 @@
-<!-- pages/login/login.wxml -->
-<view class="login-container">
-  <!-- 顶部装饰背景 -->
-  <view class="top-bg">
-    <view class="circle circle-1"></view>
-    <view class="circle circle-2"></view>
-    <view class="circle circle-3"></view>
+<view class="login-page">
+  <view class="hero">
+    <view class="hero-badge">肝</view>
+    <view class="hero-title">肝健康智能初筛</view>
+    <view class="hero-sub">肝病风险初筛 · 智能导诊 · 检查解读</view>
   </view>
 
-  <!-- Logo区域 -->
-  <view class="logo-area">
-    <image class="logo-icon" src="/images/hospital-logo.png" mode="aspectFit" />
-    <text class="app-name">杭州整形医院服务平台</text>
-    <text class="app-slogan">您的美丽，我们守护</text>
-  </view>
-
-  <!-- 登录卡片 -->
   <view class="login-card">
-    <view class="card-title">欢迎使用</view>
-    <view class="card-subtitle">请选择登录入口</view>
+    <view class="tip-title">使用前须知</view>
+    <view class="tip-text">
+      本小程序提供健康信息收集与症状初筛、就医科室与检查建议、检查指标科普解读，
+      <text class="emph">不能替代医生面诊，不提供诊断与处方</text>。
+      出现呕血、黑便、意识障碍等紧急情况请立即就医或拨打120。
+    </view>
 
-    <button class="wx-login-btn" bindtap="goPatientLogin">
-      <text class="btn-text">用户登录</text>
+    <button class="login-btn" loading="{{loggingIn}}" bindtap="handleLogin">
+      微信一键登录
     </button>
 
-    <button class="doctor-login-btn" bindtap="goDoctorLogin">
-      <text class="doctor-login-btn-text">医生登录</text>
-    </button>
-
-    <!-- 协议 -->
-    <view class="agreement">
-      <view class="checkbox-area" bindtap="toggleAgree">
-        <view class="checkbox {{agreed ? 'checked' : ''}}"></view>
+    <view class="agreement" bindtap="toggleAgree">
+      <view class="checkbox {{agreed ? 'checked' : ''}}">
+        <text wx:if="{{agreed}}" class="check-mark">✓</text>
       </view>
-      <text class="agree-text">已阅读并同意</text>
-      <text class="link-text" bindtap="openUserAgreement">《用户协议》</text>
-      <text class="agree-text">和</text>
-      <text class="link-text" bindtap="openPrivacyPolicy">《隐私政策》</text>
+      <text class="agree-text">我已阅读并同意</text>
+      <text class="link-text" catchtap="openAgreement">《免责声明与隐私政策》</text>
     </view>
   </view>
-
-  <!-- 底部说明 -->
-  <view class="footer">
-    <text class="footer-text">登录即代表您的信息仅用于本平台服务</text>
-  </view>
 </view>
-

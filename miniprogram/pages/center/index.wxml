@@ -1,76 +1,33 @@
-<view class="center-page">
-  <view class="content-pad">
-    <!-- 用户信息卡片 -->
-    <view class="card card-user">
-      <view class="user-row" bindtap="onAvatarTap">
-        <view class="avatar-ring">
-          <image
-            wx:if="{{userInfo.avatarUrl}}"
-            class="avatar-img"
-            src="{{userInfo.avatarUrl}}"
-            mode="aspectFill"
-          />
-          <view wx:else class="avatar-img avatar-ph">头像</view>
-        </view>
-        <view class="user-text">
-          <text class="user-name">{{userInfo.nickName || '微信用户'}}</text>
-          <text class="user-sub">手机号: {{maskedPhone}}</text>
-          <text class="user-sub">注册时间: {{registerTime}}</text>
-        </view>
-      </view>
-      <view class="stats-row">
-        <view class="stat-cell">
-          <text class="stat-num">{{stats.visitCount}}</text>
-          <text class="stat-label">就诊次数</text>
-        </view>
-        <view class="stat-cell">
-          <text class="stat-num">{{stats.revisitPending}}</text>
-          <text class="stat-label">待复诊</text>
-        </view>
-      </view>
+<view class="page">
+  <view class="user-card">
+    <view class="avatar">{{userInfo.nickName ? userInfo.nickName[0] : '用'}}</view>
+    <view class="user-info">
+      <view class="nickname">{{userInfo.nickName || '微信用户'}}</view>
+      <view class="phone">{{userInfo.phone || '未绑定手机号'}}</view>
     </view>
-
-    <!-- 功能菜单 -->
-    <view class="card card-menu">
-      <view class="menu-line" bindtap="goRecords">
-        <view class="menu-icon menu-icon-blue">📋</view>
-        <text class="menu-title">我的就诊记录</text>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-line" bindtap="goUpload">
-        <view class="menu-icon menu-icon-green">☁️</view>
-        <text class="menu-title">上传档案</text>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-line menu-line-last" bindtap="goConsult">
-        <view class="menu-icon menu-icon-purple">💬</view>
-        <text class="menu-title">我的咨询</text>
-        <text class="menu-arrow">›</text>
-      </view>
-    </view>
-
-    <!-- 设置 -->
-    <view class="card card-menu">
-      <view class="menu-line" bindtap="goSettings">
-        <view class="menu-icon menu-icon-orange">⚙️</view>
-        <text class="menu-title">账号设置</text>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-line" bindtap="goHelp">
-        <view class="menu-icon menu-icon-cyan">❓</view>
-        <text class="menu-title">帮助中心</text>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-line menu-line-last" bindtap="goAbout">
-        <view class="menu-icon menu-icon-gray">ℹ️</view>
-        <text class="menu-title">关于我们</text>
-        <text class="menu-arrow">›</text>
-      </view>
-    </view>
-
-    <!-- 退出登录 -->
-    <button class="logout-btn" bindtap="onLogoutTap">退出登录</button>
-
-    <view class="version-text">当前版本: v1.0.0</view>
   </view>
+
+  <view class="menu">
+    <view class="menu-item" bindtap="goProfile">
+      <text class="menu-icon">🗂️</text>
+      <text class="menu-name">健康档案管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goReport">
+      <text class="menu-icon">🧪</text>
+      <text class="menu-name">检查指标解读</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goNotice">
+      <text class="menu-icon">📄</text>
+      <text class="menu-name">免责声明与隐私政策</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="scope-note">
+    本小程序仅提供健康初筛、导诊与科普解读，不提供诊断、处方或治疗方案。
+  </view>
+
+  <button class="logout-btn" bindtap="logout">退出登录</button>
 </view>

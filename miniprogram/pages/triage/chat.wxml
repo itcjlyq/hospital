@@ -1,0 +1,62 @@
+<view class="page">
+  <scroll-view class="chat-scroll" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
+    <view class="top-tip">AI 助手为你进行症状初筛与导诊，回答不能替代医生面诊</view>
+
+    <view
+      wx:for="{{messages}}"
+      wx:key="index"
+      class="msg-row {{item.role === 'USER' ? 'right' : 'left'}} {{item.role === 'SYSTEM' ? 'system-row' : ''}}"
+    >
+      <view wx:if="{{item.role === 'SYSTEM'}}" class="system-card">
+        <view class="system-head">🚨 急症提醒</view>
+        <view class="system-content">{{item.content}}</view>
+      </view>
+
+      <view wx:else class="bubble {{item.role === 'USER' ? 'bubble-user' : 'bubble-ai'}}">{{item.content}}</view>
+
+      <view wx:if="{{item.role === 'ASSISTANT' && item.options.length}}" class="options">
+        <view
+          class="option-chip"
+          wx:for="{{item.options}}"
+          wx:for-item="opt"
+          wx:key="*this"
+          data-text="{{opt}}"
+          bindtap="onTapOption"
+        >{{opt}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{sending}}" class="msg-row left">
+      <view class="bubble bubble-ai typing">助手正在分析…</view>
+    </view>
+
+    <view id="msg-bottom" class="msg-bottom"></view>
+  </scroll-view>
+
+  <!-- 已收口 -->
+  <view wx:if="{{status !== 'ONGOING'}}" class="done-bar">
+    <block wx:if="{{status === 'EMERGENCY'}}">
+      <view class="done-warn">检测到急症风险，已中止初筛</view>
+    </block>
+    <block wx:else>
+      <view class="done-text">初筛已完成，请查看结构化报告</view>
+    </block>
+    <view class="done-btns">
+      <button wx:if="{{status !== 'EMERGENCY'}}" class="primary-btn" bindtap="viewReport">查看初筛报告</button>
+      <button class="ghost-btn" bindtap="newTriage">再做一次</button>
+    </view>
+  </view>
+
+  <!-- 输入栏 -->
+  <view wx:else class="input-bar">
+    <input
+      class="msg-input"
+      placeholder="描述你的情况…"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      confirm-type="send"
+      bindconfirm="onSend"
+    />
+    <view class="send-btn {{inputValue ? 'ready' : ''}}" bindtap="onSend">发送</view>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+<view class="page">
+  <!-- 顶部 -->
+  <view class="header">
+    <view class="hello">你好{{userInfo.nickName ? '，' + userInfo.nickName : ''}}</view>
+    <view class="hello-sub">肝健康，早筛查 · 早安心</view>
+  </view>
+
+  <!-- 急症提示条 -->
+  <view class="sos-bar">
+    <text class="sos-icon">⚠️</text>
+    <text class="sos-text">若出现呕血、黑便、意识模糊、剧烈腹痛等紧急情况，请立即就医或拨打 120</text>
+  </view>
+
+  <!-- 主入口 -->
+  <view class="main-card" bindtap="goTriage">
+    <view class="main-left">
+      <view class="main-title">AI 肝病症状初筛</view>
+      <view class="main-desc">多轮问答 · 风险分级 · 科室与检查建议</view>
+    </view>
+    <view class="main-btn">开始</view>
+  </view>
+
+  <!-- 功能区 -->
+  <view class="func-grid">
+    <view class="func-item" bindtap="goProfile">
+      <view class="func-icon">🗂️</view>
+      <view class="func-name">健康档案</view>
+      <view class="func-sub">本人/家属病史</view>
+    </view>
+    <view class="func-item" bindtap="goReport">
+      <view class="func-icon">🧪</view>
+      <view class="func-name">指标解读</view>
+      <view class="func-sub">肝功能/AFP/超声</view>
+    </view>
+    <view class="func-item" bindtap="goHistory">
+      <view class="func-icon">📋</view>
+      <view class="func-name">初筛记录</view>
+      <view class="func-sub">历史报告回看</view>
+    </view>
+  </view>
+
+  <!-- 科普公告 -->
+  <view class="section-title">肝病科普与提示</view>
+  <view class="notice-card" wx:for="{{notices}}" wx:key="id">
+    <view class="notice-title">{{item.title}}</view>
+    <view class="notice-content">{{item.content}}</view>
+  </view>
+  <view class="empty-tip" wx:if="{{notices.length === 0}}">暂无科普内容</view>
+
+  <view class="footer-disclaim">本工具提供健康初筛与科普参考，不能替代医生面诊</view>
+</view>

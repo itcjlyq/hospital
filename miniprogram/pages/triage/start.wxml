@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="block-title">选择就诊人</view>
+  <view class="profile-list">
+    <view
+      class="profile-item {{selectedId === item.id ? 'active' : ''}}"
+      wx:for="{{profiles}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="chooseProfile"
+    >
+      <view class="p-name">{{item.realName}}</view>
+      <view class="p-meta">{{item.relation}} · {{item.gender}} · {{item.age || '?'}}岁</view>
+      <view class="radio {{selectedId === item.id ? 'on' : ''}}"></view>
+    </view>
+    <view class="add-profile" bindtap="goCreateProfile">+ 新建档案</view>
+  </view>
+
+  <view class="block-title">描述主要不适</view>
+  <view class="complaint-card">
+    <textarea
+      class="complaint-input"
+      placeholder="例如：最近两周总觉得乏力、没胃口，右上腹隐隐胀痛，皮肤好像有点发黄……"
+      maxlength="500"
+      value="{{complaint}}"
+      bindinput="onComplaintInput"
+    ></textarea>
+    <view class="word-count">{{complaint.length}}/500</view>
+  </view>
+
+  <view class="tips">
+    <view class="tips-title">为得到更准确的建议，请尽量描述：</view>
+    <view class="tips-line">· 不适部位、开始时间与持续时长</view>
+    <view class="tips-line">· 伴随表现（乏力、腹胀、黄疸、尿色加深等）</view>
+    <view class="tips-line">· 既往乙肝/丙肝/肝硬化、饮酒史、家族史</view>
+  </view>
+
+  <button class="submit-btn" loading="{{submitting}}" bindtap="onSubmit">开始 AI 初筛</button>
+  <view class="disclaim">初筛结果仅供参考，不能替代医生面诊</view>
+</view>

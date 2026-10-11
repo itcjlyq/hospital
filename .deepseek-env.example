@@ -1,0 +1,4 @@
+# 复制本文件为 .deepseek-env，填入你的 DeepSeek API Key（该文件已被 .gitignore 忽略，不会提交）
+# 获取地址：https://platform.deepseek.com/
+DEEPSEEK_API_KEY=sk-在此填入你的key
+DEEPSEEK_MOCK=false

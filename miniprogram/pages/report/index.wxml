@@ -1,0 +1,66 @@
+<view class="page">
+  <!-- 解读结果 -->
+  <view class="result-card" wx:if="{{interpretation}}">
+    <view class="result-title">🧪 AI 科普解读</view>
+    <view class="result-text">{{interpretation}}</view>
+  </view>
+
+  <view class="form-card">
+    <view class="row">
+      <text class="label">就诊人</text>
+      <picker range="{{profiles}}" range-key="realName" value="{{profileIndex}}" bindchange="onProfileChange">
+        <view class="picker-value">{{profiles.length ? profiles[profileIndex].realName : '请先建档'}} ▾</view>
+      </picker>
+    </view>
+    <view class="row">
+      <text class="label">检查类型</text>
+      <picker range="{{types}}" value="{{typeIndex}}" bindchange="onTypeChange">
+        <view class="picker-value">{{types[typeIndex]}} ▾</view>
+      </picker>
+    </view>
+    <view class="row">
+      <text class="label">检查日期</text>
+      <picker mode="date" value="{{reportDate}}" bindchange="onDateChange">
+        <view class="picker-value">{{reportDate}} ▾</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="form-card">
+    <view class="card-title">检查指标（对照报告单填写数值）</view>
+    <view class="ind-row" wx:for="{{indicators}}" wx:key="index">
+      <input
+        class="ind-name {{item.custom ? 'editable' : ''}}"
+        value="{{item.name}}"
+        placeholder="指标名称"
+        data-idx="{{index}}"
+        bindinput="onIndicatorNameInput"
+      />
+      <input
+        class="ind-value"
+        value="{{item.value}}"
+        placeholder="数值/描述"
+        data-idx="{{index}}"
+        bindinput="onIndicatorInput"
+      />
+      <view wx:if="{{item.custom}}" class="ind-del" data-idx="{{index}}" bindtap="removeIndicator">✕</view>
+    </view>
+    <view class="add-ind" bindtap="addIndicator">+ 添加指标</view>
+  </view>
+
+  <button class="submit-btn" loading="{{submitting}}" bindtap="onSubmit">生成 AI 解读</button>
+  <view class="tip">解读仅为科普参考，异常指标请到消化内科/肝病科就诊确认</view>
+
+  <!-- 历史 -->
+  <view class="section-title" wx:if="{{history.length}}">解读记录</view>
+  <view class="history-item" wx:for="{{history}}" wx:key="id">
+    <view class="history-head" data-id="{{item.id}}" bindtap="toggleHistory">
+      <view>
+        <view class="history-type">{{item.typeLabel}}</view>
+        <view class="history-date">{{item.reportDate}}</view>
+      </view>
+      <view class="arrow">{{expandedId === item.id ? '▲' : '▼'}}</view>
+    </view>
+    <view class="history-body" wx:if="{{expandedId === item.id}}">{{item.aiInterpretation}}</view>
+  </view>
+</view>

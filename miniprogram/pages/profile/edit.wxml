@@ -1,22 +1,88 @@
-<view class="profile-container">
+<view class="page">
   <view class="card">
-    <view class="title">修改密码</view>
-
-    <view class="form-item">
-      <text class="label">旧密码</text>
-      <input class="input" password placeholder="请输入旧密码" value="{{form.oldPassword}}" data-field="oldPassword" bindinput="onInput" />
+    <view class="row">
+      <text class="label">姓名/称呼</text>
+      <input class="input" placeholder="如：本人、张爸爸" value="{{form.realName}}" data-field="realName" bindinput="onInput" />
     </view>
 
-    <view class="form-item">
-      <text class="label">新密码</text>
-      <input class="input" password placeholder="请输入新密码（4-20位）" value="{{form.newPassword}}" data-field="newPassword" bindinput="onInput" />
+    <view class="row">
+      <text class="label">性别</text>
+      <view class="gender-group">
+        <view class="gender {{form.gender === '男' ? 'active' : ''}}" data-gender="男" bindtap="chooseGender">男</view>
+        <view class="gender {{form.gender === '女' ? 'active' : ''}}" data-gender="女" bindtap="chooseGender">女</view>
+      </view>
     </view>
 
-    <view class="form-item">
-      <text class="label">确认新密码</text>
-      <input class="input" password placeholder="请再次输入新密码" value="{{form.confirmPassword}}" data-field="confirmPassword" bindinput="onInput" />
+    <view class="row">
+      <text class="label">年龄</text>
+      <input class="input" type="number" placeholder="请输入年龄" value="{{form.age}}" data-field="age" bindinput="onInput" />
     </view>
 
-    <button class="submit-btn" loading="{{submitting}}" bindtap="onSubmit">保存新密码</button>
+    <view class="row">
+      <text class="label">关系</text>
+      <picker class="picker" range="{{relations}}" value="{{relationIndex}}" bindchange="onRelationChange">
+        <view class="picker-value">{{form.relation}} ▾</view>
+      </picker>
+    </view>
   </view>
+
+  <view class="card">
+    <view class="card-title">肝病相关高危因素</view>
+
+    <view class="switch-row">
+      <text class="label">乙肝病毒携带/感染</text>
+      <switch checked="{{form.hbvCarrier === 1}}" color="#43A294" data-field="hbvCarrier" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <text class="label">丙肝病毒携带/感染</text>
+      <switch checked="{{form.hcvCarrier === 1}}" color="#43A294" data-field="hcvCarrier" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <text class="label">肝硬化</text>
+      <switch checked="{{form.cirrhosis === 1}}" color="#43A294" data-field="cirrhosis" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <text class="label">糖尿病</text>
+      <switch checked="{{form.diabetes === 1}}" color="#43A294" data-field="diabetes" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <text class="label">吸烟</text>
+      <switch checked="{{form.smoking === 1}}" color="#43A294" data-field="smoking" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <text class="label">肝癌家族史</text>
+      <switch checked="{{form.familyLiverCancer === 1}}" color="#43A294" data-field="familyLiverCancer" bindchange="onSwitch" />
+    </view>
+
+    <view class="row">
+      <text class="label">脂肪肝</text>
+      <picker class="picker" range="{{fattyOptions}}" value="{{fattyIndex}}" bindchange="onFattyChange">
+        <view class="picker-value">{{fattyOptions[fattyIndex]}} ▾</view>
+      </picker>
+    </view>
+
+    <view class="column-row">
+      <text class="label">饮酒史（频率/年限）</text>
+      <input class="input" placeholder="如：每周3次，约10年" value="{{form.alcoholHistory}}" data-field="alcoholHistory" bindinput="onInput" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">其他健康信息</view>
+    <view class="column-row">
+      <text class="label">过敏史/药物过敏</text>
+      <input class="input" placeholder="如：青霉素过敏" value="{{form.allergy}}" data-field="allergy" bindinput="onInput" />
+    </view>
+    <view class="column-row">
+      <text class="label">当前长期用药</text>
+      <input class="input" placeholder="如：恩替卡韦" value="{{form.currentMedication}}" data-field="currentMedication" bindinput="onInput" />
+    </view>
+    <view class="column-row">
+      <text class="label">备注</text>
+      <textarea class="textarea" placeholder="其他需要医生了解的情况" value="{{form.remark}}" data-field="remark" bindinput="onInput"></textarea>
+    </view>
+  </view>
+
+  <button class="save-btn" loading="{{saving}}" bindtap="onSave">保存档案</button>
+  <view class="privacy-tip">健康信息仅用于本次初筛与就诊参考，请确保信息真实</view>
 </view>

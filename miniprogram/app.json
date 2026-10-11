@@ -1,22 +1,16 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/patient/login",
-    "pages/doctor/login",
-    "pages/doctor/index",
-    "pages/doctor/center",
-    "pages/doctor/chat",
-    "pages/doctor/patients",
-    "pages/doctor/patient-detail",
-    "pages/doctor/patient-record",
-    "pages/doctor/record-detail",
-    "pages/chat/index",
-    "pages/index/index",
-    "pages/upload/index",
+    "pages/home/index",
+    "pages/history/list",
     "pages/center/index",
+    "pages/profile/list",
     "pages/profile/edit",
-    "pages/consult/index",
-    "pages/patient/index"
+    "pages/triage/start",
+    "pages/triage/chat",
+    "pages/triage/report",
+    "pages/report/index",
+    "pages/agreement/notice"
   ],
   "tabBar": {
     "custom": true,
@@ -26,35 +20,23 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/tabbar/home.png",
-        "selectedIconPath": "images/tabbar/home-active.png"
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/history/list",
+        "text": "记录"
       },
       {
         "pagePath": "pages/center/index",
-        "text": "中心",
-        "iconPath": "images/tabbar/center.png",
-        "selectedIconPath": "images/tabbar/center-active.png"
-      },
-      {
-        "pagePath": "pages/doctor/index",
-        "text": "首页",
-        "iconPath": "images/tabbar/home.png",
-        "selectedIconPath": "images/tabbar/home-active.png"
-      },
-      {
-        "pagePath": "pages/doctor/center",
-        "text": "中心",
-        "iconPath": "images/tabbar/center.png",
-        "selectedIconPath": "images/tabbar/center-active.png"
+        "text": "我的"
       }
     ]
   },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#43A294",
-    "navigationBarTitleText": "医院小程序",
+    "navigationBarTitleText": "肝健康初筛",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5FBF9"
   },
@@ -62,4 +44,3 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents"
 }
-
