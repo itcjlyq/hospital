@@ -39,6 +39,25 @@ Page({
     }
   },
 
+  // 未保存修改时拦截返回（基础库支持时生效）
+  markDirty() {
+    this._dirty = true;
+    if (wx.enableAlertBeforeUnload) {
+      wx.enableAlertBeforeUnload({
+        message: '档案修改尚未保存，确定离开吗？'
+      });
+    }
+  },
+
+  markSaved() {
+    this._dirty = false;
+    if (wx.disableAlertBeforeUnload) wx.disableAlertBeforeUnload();
+  },
+
+  onUnload() {
+    this.markSaved();
+  },
+
   async loadProfile(id) {
     try {
       const res = await api.profileDetail(id);
@@ -72,25 +91,30 @@ Page({
   onInput(e) {
     const field = e.currentTarget.dataset.field;
     this.setData({ [`form.${field}`]: e.detail.value });
+    this.markDirty();
   },
 
   chooseGender(e) {
     this.setData({ 'form.gender': e.currentTarget.dataset.gender });
+    this.markDirty();
   },
 
   onRelationChange(e) {
     const idx = Number(e.detail.value);
     this.setData({ relationIndex: idx, 'form.relation': RELATIONS[idx] });
+    this.markDirty();
   },
 
   onFattyChange(e) {
     const idx = Number(e.detail.value);
     this.setData({ fattyIndex: idx, 'form.fattyLiver': idx });
+    this.markDirty();
   },
 
   onSwitch(e) {
     const field = e.currentTarget.dataset.field;
     this.setData({ [`form.${field}`]: e.detail.value ? 1 : 0 });
+    this.markDirty();
   },
 
   async onSave() {
@@ -112,6 +136,7 @@ Page({
         await api.profileCreate(payload);
       }
       wx.showToast({ title: '已保存', icon: 'success' });
+      this.markSaved();
       setTimeout(() => wx.navigateBack(), 400);
     } catch (e) {
       console.error(e);

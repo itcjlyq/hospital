@@ -1,33 +1,55 @@
+/* 免责声明与隐私政策 */
 .page {
-  padding: 36rpx 34rpx 60rpx;
+  padding: 36rpx 30rpx 70rpx;
 }
 
 .title {
-  font-size: 38rpx;
+  font-size: 40rpx;
   font-weight: 700;
-  color: #1f3a36;
+  color: #183B4A;
+  letter-spacing: 1rpx;
 }
 
 .updated {
-  margin-top: 10rpx;
+  margin-top: 12rpx;
   font-size: 23rpx;
-  color: #aab8b5;
+  color: #84929F;
 }
 
 .h {
-  margin-top: 34rpx;
+  position: relative;
+  margin-top: 38rpx;
+  margin-bottom: 4rpx;
+  padding-left: 20rpx;
   font-size: 30rpx;
   font-weight: 600;
-  color: #2e8b7d;
+  color: #0B7F76;
+  line-height: 1.5;
+}
+
+.h::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8rpx;
+  bottom: 8rpx;
+  width: 7rpx;
+  border-radius: 4rpx;
+  background: linear-gradient(180deg, #13A89E, #7FD4CC);
 }
 
 .p {
   margin-top: 14rpx;
   font-size: 27rpx;
-  color: #4d5d59;
-  line-height: 1.85;
+  color: #46555E;
+  line-height: 1.9;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 26rpx 28rpx;
+  box-shadow: 0 8rpx 30rpx rgba(24, 59, 74, 0.05);
 }
 
 .emph {
-  color: #d9534f;
+  color: #C5382F;
+  font-weight: 500;
 }

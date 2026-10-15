@@ -1,51 +1,154 @@
-<view class="page">
-  <!-- 顶部 -->
-  <view class="header">
-    <view class="hello">你好{{userInfo.nickName ? '，' + userInfo.nickName : ''}}</view>
-    <view class="hello-sub">肝健康，早筛查 · 早安心</view>
+<view class="page home-page has-tabbar">
+  <!-- 顶部问候 -->
+  <view class="home-header">
+    <view class="hello-block">
+      <view class="hello">你好{{userInfo.nickName ? '，' + userInfo.nickName : ''}}</view>
+      <view class="date-line">
+        <view class="ic ic-sm ic-clock date-ic"></view>
+        <text>{{todayText}}</text>
+      </view>
+    </view>
+    <view class="avatar-entry" bindtap="goCenter">
+      <text class="avatar-txt">{{userInfo.nickName ? userInfo.nickName[0] : '我'}}</text>
+    </view>
   </view>
 
   <!-- 急症提示条 -->
   <view class="sos-bar">
-    <text class="sos-icon">⚠️</text>
+    <view class="ic ic-sm ic-alert sos-ic"></view>
     <text class="sos-text">若出现呕血、黑便、意识模糊、剧烈腹痛等紧急情况，请立即就医或拨打 120</text>
   </view>
 
-  <!-- 主入口 -->
-  <view class="main-card" bindtap="goTriage">
-    <view class="main-left">
-      <view class="main-title">AI 肝病症状初筛</view>
-      <view class="main-desc">多轮问答 · 风险分级 · 科室与检查建议</view>
+  <!-- 主入口：AI 初筛 -->
+  <view class="hero-card" hover-class="card-hover" hover-stay-time="60" bindtap="goTriage">
+    <view class="hero-left">
+      <view class="hero-chip">
+        <view class="ic ic-sm ic-spark chip-ic"></view>
+        <text>AI 肝病症状初筛</text>
+      </view>
+      <view class="hero-title">
+        <view class="hero-title-line">身体不适？</view>
+        <view class="hero-title-line">先做个快速评估</view>
+      </view>
+      <view class="hero-desc">多轮问答 · 风险分级 · 科室与检查建议</view>
+      <view class="hero-btn">
+        <text>开始初筛</text>
+        <view class="hero-arrow"></view>
+      </view>
     </view>
-    <view class="main-btn">开始</view>
-  </view>
-
-  <!-- 功能区 -->
-  <view class="func-grid">
-    <view class="func-item" bindtap="goProfile">
-      <view class="func-icon">🗂️</view>
-      <view class="func-name">健康档案</view>
-      <view class="func-sub">本人/家属病史</view>
-    </view>
-    <view class="func-item" bindtap="goReport">
-      <view class="func-icon">🧪</view>
-      <view class="func-name">指标解读</view>
-      <view class="func-sub">肝功能/AFP/超声</view>
-    </view>
-    <view class="func-item" bindtap="goHistory">
-      <view class="func-icon">📋</view>
-      <view class="func-name">初筛记录</view>
-      <view class="func-sub">历史报告回看</view>
+    <view class="hero-visual">
+      <view class="visual-circle">
+        <view class="ic ic-lg ic-pulse"></view>
+      </view>
+      <view class="visual-dot dot-1"></view>
+      <view class="visual-dot dot-2"></view>
     </view>
   </view>
 
-  <!-- 科普公告 -->
-  <view class="section-title">肝病科普与提示</view>
-  <view class="notice-card" wx:for="{{notices}}" wx:key="id">
-    <view class="notice-title">{{item.title}}</view>
-    <view class="notice-content">{{item.content}}</view>
+  <!-- 最近一次检验 -->
+  <view class="section-head">
+    <text class="st-title">最近检验</text>
+    <text class="st-action" bindtap="goReport" wx:if="{{latestReport}}">查看完整记录</text>
   </view>
-  <view class="empty-tip" wx:if="{{notices.length === 0}}">暂无科普内容</view>
 
-  <view class="footer-disclaim">本工具提供健康初筛与科普参考，不能替代医生面诊</view>
+  <block wx:if="{{loading}}">
+    <view class="lab-card">
+      <view class="skeleton sk-line w70"></view>
+      <view class="lab-grid">
+        <view class="lab-item" wx:for="{{[1,2,3]}}" wx:key="*this">
+          <view class="skeleton sk-num"></view>
+          <view class="skeleton sk-line w50"></view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:elif="{{latestReport}}">
+    <view class="lab-card" hover-class="card-hover" bindtap="goReport">
+      <view class="lab-head">
+        <view class="lab-head-l">
+          <view class="lab-ic-wrap"><view class="ic ic-sm ic-flask"></view></view>
+          <text class="lab-type">{{latestReport.typeLabel}}</text>
+        </view>
+        <text class="lab-date">{{latestReport.reportDate}}</text>
+      </view>
+      <view class="lab-grid" wx:if="{{latestReport.metrics.length}}">
+        <view class="lab-item" wx:for="{{latestReport.metrics}}" wx:key="key">
+          <view class="lab-val">{{item.value}}</view>
+          <view class="lab-name">{{item.key}}</view>
+          <view class="lab-full">{{item.name}}</view>
+        </view>
+      </view>
+      <view class="lab-empty-in" wx:else>
+        <text>本次共记录指标，点击查看 AI 科普解读</text>
+      </view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="lab-card lab-add" hover-class="card-hover" bindtap="goReport">
+      <view class="lab-add-l">
+        <view class="lab-ic-wrap"><view class="ic ic-sm ic-flask"></view></view>
+        <view>
+          <view class="lab-add-title">记录一次肝功能指标</view>
+          <view class="lab-add-sub">ALT / AST / GGT 等，可生成科普解读</view>
+        </view>
+      </view>
+      <view class="ic ic-sm ic-chevron"></view>
+    </view>
+  </block>
+
+  <!-- 快捷功能 -->
+  <view class="quick-grid">
+    <view class="quick-item" hover-class="card-hover" bindtap="goProfile">
+      <view class="quick-ic"><view class="ic ic-profile"></view></view>
+      <view class="quick-name">健康档案</view>
+      <view class="quick-sub">本人/家属病史</view>
+    </view>
+    <view class="quick-item" hover-class="card-hover" bindtap="goReport">
+      <view class="quick-ic"><view class="ic ic-flask"></view></view>
+      <view class="quick-name">指标解读</view>
+      <view class="quick-sub">肝功能/AFP/超声</view>
+    </view>
+    <view class="quick-item" hover-class="card-hover" bindtap="goHistory">
+      <view class="quick-ic"><view class="ic ic-clock"></view></view>
+      <view class="quick-name">初筛记录</view>
+      <view class="quick-sub">历史报告回看</view>
+    </view>
+  </view>
+
+  <!-- 肝病科普 -->
+  <view class="section-head">
+    <text class="st-title">肝病科普与提示</text>
+  </view>
+
+  <block wx:if="{{loading}}">
+    <view class="notice-card" wx:for="{{[1,2]}}" wx:key="*this">
+      <view class="skeleton sk-line w60"></view>
+      <view class="skeleton sk-line w100 mt16"></view>
+      <view class="skeleton sk-line w90"></view>
+    </view>
+  </block>
+
+  <view wx:elif="{{notices.length}}" class="notice-list">
+    <view class="notice-card" wx:for="{{notices}}" wx:key="id">
+      <view class="notice-bar"></view>
+      <view class="notice-title">{{item.title}}</view>
+      <view class="notice-content">{{item.content}}</view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <view class="empty-ic"><view class="ic ic-empty"></view></view>
+    <view class="empty-title">暂无科普内容</view>
+    <view class="empty-sub">科普文章需在获得相应内容资质后更新</view>
+  </view>
+
+  <view class="network-error error-state" wx:if="{{loadError && !loading}}">
+    <view class="err-title">网络开小差了</view>
+    <view class="err-sub">请检查网络或后端服务后重试</view>
+    <view class="err-btn" bindtap="loadData">重新加载</view>
+  </view>
+
+  <view class="footer-disclaim disclaimer-mini">本工具提供健康初筛与科普参考，不能替代医生面诊</view>
 </view>

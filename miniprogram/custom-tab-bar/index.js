@@ -2,9 +2,9 @@ Component({
   data: {
     selected: 0,
     list: [
-      { pagePath: '/pages/home/index', text: '首页', icon: '🏠' },
-      { pagePath: '/pages/history/list', text: '记录', icon: '📋' },
-      { pagePath: '/pages/center/index', text: '我的', icon: '👤' }
+      { pagePath: '/pages/home/index', text: '首页', icon: 'ic-home', iconOn: 'ic-home-on' },
+      { pagePath: '/pages/history/list', text: '记录', icon: 'ic-record', iconOn: 'ic-record-on' },
+      { pagePath: '/pages/center/index', text: '我的', icon: 'ic-mine', iconOn: 'ic-mine-on' }
     ]
   },
 

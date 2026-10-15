@@ -8,12 +8,13 @@ const TYPES = [
   { value: 'OTHER', label: '其他检查' }
 ];
 
+// 预置指标带展示单位（仅 UI 提示，不参与提交与校验；提交仍为 名称→原始值 文本）
 const DEFAULT_INDICATORS = [
-  { name: 'ALT（谷丙转氨酶）', value: '' },
-  { name: 'AST（谷草转氨酶）', value: '' },
-  { name: '总胆红素', value: '' },
-  { name: '白蛋白', value: '' },
-  { name: 'AFP（甲胎蛋白）', value: '' }
+  { name: 'ALT（谷丙转氨酶）', value: '', unit: 'U/L' },
+  { name: 'AST（谷草转氨酶）', value: '', unit: 'U/L' },
+  { name: '总胆红素', value: '', unit: 'μmol/L' },
+  { name: '白蛋白', value: '', unit: 'g/L' },
+  { name: 'AFP（甲胎蛋白）', value: '', unit: 'ng/mL' }
 ];
 
 function today() {
@@ -34,12 +35,32 @@ Page({
     interpretation: '',
     history: [],
     expandedId: null,
-    submitting: false
+    submitting: false,
+    focusedIdx: -1
   },
 
   onShow() {
     this.loadProfiles();
     this.loadHistory();
+  },
+
+  // 表单有未保存修改时，拦截返回（基础库支持时生效）
+  markDirty() {
+    this._dirty = true;
+    if (wx.enableAlertBeforeUnload) {
+      wx.enableAlertBeforeUnload({
+        message: '检验数据尚未保存生成解读，确定离开吗？'
+      });
+    }
+  },
+
+  markSaved() {
+    this._dirty = false;
+    if (wx.disableAlertBeforeUnload) wx.disableAlertBeforeUnload();
+  },
+
+  onUnload() {
+    this.markSaved();
   },
 
   async loadProfiles() {
@@ -73,20 +94,32 @@ Page({
 
   onDateChange(e) {
     this.setData({ reportDate: e.detail.value });
+    this.markDirty();
+  },
+
+  onMetricFocus(e) {
+    this.setData({ focusedIdx: Number(e.currentTarget.dataset.idx) });
+  },
+
+  onMetricBlur() {
+    this.setData({ focusedIdx: -1 });
   },
 
   onIndicatorInput(e) {
     const idx = e.currentTarget.dataset.idx;
     this.setData({ [`indicators[${idx}].value`]: e.detail.value });
+    this.markDirty();
   },
 
   onIndicatorNameInput(e) {
     const idx = e.currentTarget.dataset.idx;
     this.setData({ [`indicators[${idx}].name`]: e.detail.value });
+    this.markDirty();
   },
 
   addIndicator() {
     this.setData({ indicators: this.data.indicators.concat([{ name: '', value: '', custom: true }]) });
+    this.markDirty();
   },
 
   removeIndicator(e) {
@@ -94,6 +127,7 @@ Page({
     const indicators = this.data.indicators.slice();
     indicators.splice(idx, 1);
     this.setData({ indicators });
+    this.markDirty();
   },
 
   async onSubmit() {
@@ -121,6 +155,7 @@ Page({
         indicators: map
       });
       this.setData({ interpretation: res.data.aiInterpretation || '' });
+      this.markSaved();
       this.loadHistory();
       wx.pageScrollTo({ scrollTop: 0, duration: 200 });
     } catch (e) {

@@ -1,24 +1,46 @@
-<view class="page">
-  <view class="hint">可为本人生成档案，也可帮父母/家属建立（最多按实际需要添加）</view>
+<view class="page profile-list-page">
+  <view class="page-title">健康档案</view>
+  <view class="page-sub">可为本人生成档案，也可帮父母 / 家属建立</view>
 
-  <view class="profile-card" wx:for="{{profiles}}" wx:key="id" data-id="{{item.id}}" bindtap="goEdit">
-    <view class="card-head">
-      <view class="name">{{item.realName}}</view>
-      <view class="meta">{{item.relation}} · {{item.gender}} · {{item.age || '?'}}岁</view>
+  <view
+    class="profile-card"
+    wx:for="{{profiles}}"
+    wx:key="id"
+    hover-class="card-hover"
+    data-id="{{item.id}}"
+    bindtap="goEdit"
+  >
+    <view class="card-main">
+      <view class="p-avatar">{{item.realName[0]}}</view>
+      <view class="p-info">
+        <view class="name-line">
+          <text class="name">{{item.realName}}</text>
+          <text class="relation-tag">{{item.relation}}</text>
+        </view>
+        <view class="meta">{{item.gender}} · {{item.age || '?'}}岁</view>
+        <view class="tags" wx:if="{{item.tags.length}}">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+        </view>
+        <view class="no-risk" wx:else>暂无肝病相关高危因素标记</view>
+      </view>
     </view>
-    <view class="tags" wx:if="{{item.tags.length}}">
-      <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
-    </view>
-    <view class="no-risk" wx:else>暂无高危因素标记</view>
     <view class="card-actions">
-      <text class="del" catchtap="onDelete" data-id="{{item.id}}">删除</text>
+      <text class="del" catchtap="onDelete" data-id="{{item.id}}">删除档案</text>
     </view>
   </view>
 
-  <view class="empty" wx:if="{{profiles.length === 0}}">
-    <view class="empty-icon">🗂️</view>
-    <view>还没有健康档案</view>
+  <view class="empty-state" wx:if="{{profiles.length === 0}}">
+    <view class="empty-ic"><view class="ic ic-profile" style="width:60rpx;height:60rpx;"></view></view>
+    <view class="empty-title">还没有健康档案</view>
+    <view class="empty-sub">建立档案后才能进行 AI 初筛与指标解读</view>
+    <view class="empty-btn" bindtap="goCreate">立即新建</view>
   </view>
 
-  <button class="add-btn" bindtap="goCreate">+ 新建健康档案</button>
+  <view class="footer-holder" wx:if="{{profiles.length > 0}}"></view>
+  <view class="footer-bar" wx:if="{{profiles.length > 0}}">
+    <button class="btn-primary add-btn" bindtap="goCreate">
+      <view class="add-plus"></view>
+      <text>新建健康档案</text>
+    </button>
+  </view>
 </view>

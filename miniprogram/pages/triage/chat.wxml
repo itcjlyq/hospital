@@ -1,33 +1,55 @@
 <view class="page">
   <scroll-view class="chat-scroll" scroll-y scroll-into-view="{{scrollToView}}" scroll-with-animation>
-    <view class="top-tip">AI 助手为你进行症状初筛与导诊，回答不能替代医生面诊</view>
+    <view class="top-tip">
+      <view class="top-tip-dot"></view>
+      <text>AI 助手进行症状初筛与导诊，回答不能替代医生面诊</text>
+    </view>
 
     <view
       wx:for="{{messages}}"
       wx:key="index"
       class="msg-row {{item.role === 'USER' ? 'right' : 'left'}} {{item.role === 'SYSTEM' ? 'system-row' : ''}}"
     >
+      <!-- 急症系统消息 -->
       <view wx:if="{{item.role === 'SYSTEM'}}" class="system-card">
-        <view class="system-head">🚨 急症提醒</view>
+        <view class="system-head">
+          <view class="ic ic-sm ic-alert-red sys-ic"></view>
+          <text>急症提醒</text>
+        </view>
         <view class="system-content">{{item.content}}</view>
       </view>
 
-      <view wx:else class="bubble {{item.role === 'USER' ? 'bubble-user' : 'bubble-ai'}}">{{item.content}}</view>
+      <block wx:else>
+        <view wx:if="{{item.role === 'ASSISTANT'}}" class="ai-avatar">
+          <view class="ic ic-sm ai-avatar-ic"></view>
+        </view>
+        <view class="msg-col">
+          <view class="bubble {{item.role === 'USER' ? 'bubble-user' : 'bubble-ai'}}">{{item.content}}</view>
 
-      <view wx:if="{{item.role === 'ASSISTANT' && item.options.length}}" class="options">
-        <view
-          class="option-chip"
-          wx:for="{{item.options}}"
-          wx:for-item="opt"
-          wx:key="*this"
-          data-text="{{opt}}"
-          bindtap="onTapOption"
-        >{{opt}}</view>
-      </view>
+          <view wx:if="{{item.role === 'ASSISTANT' && item.options.length}}" class="options">
+            <view
+              class="option-chip"
+              wx:for="{{item.options}}"
+              wx:for-item="opt"
+              wx:key="*this"
+              data-text="{{opt}}"
+              hover-class="chip-hover"
+              bindtap="onTapOption"
+            >{{opt}}</view>
+          </view>
+        </view>
+      </block>
     </view>
 
     <view wx:if="{{sending}}" class="msg-row left">
-      <view class="bubble bubble-ai typing">助手正在分析…</view>
+      <view class="ai-avatar"><view class="ic ic-sm ai-avatar-ic"></view></view>
+      <view class="bubble bubble-ai typing">
+        <view class="typing-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
     </view>
 
     <view id="msg-bottom" class="msg-bottom"></view>
@@ -42,8 +64,8 @@
       <view class="done-text">初筛已完成，请查看结构化报告</view>
     </block>
     <view class="done-btns">
-      <button wx:if="{{status !== 'EMERGENCY'}}" class="primary-btn" bindtap="viewReport">查看初筛报告</button>
-      <button class="ghost-btn" bindtap="newTriage">再做一次</button>
+      <button wx:if="{{status !== 'EMERGENCY'}}" class="primary-btn btn-primary" bindtap="viewReport">查看初筛报告</button>
+      <button class="ghost-btn btn-ghost" bindtap="newTriage">再做一次</button>
     </view>
   </view>
 
@@ -52,9 +74,10 @@
     <input
       class="msg-input"
       placeholder="描述你的情况…"
+      placeholder-class="input-ph"
       value="{{inputValue}}"
-      bindinput="onInput"
       confirm-type="send"
+      bindinput="onInput"
       bindconfirm="onSend"
     />
     <view class="send-btn {{inputValue ? 'ready' : ''}}" bindtap="onSend">发送</view>

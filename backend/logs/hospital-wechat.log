@@ -1,25 +1,53 @@
-2026-10-10 13:30:59.836 [main] INFO  c.hospital.wechat.WechatApplication - Starting WechatApplication using Java 17.0.16 with PID 69284 (D:\工作文件\hospital\backend\target\classes started by admin in D:\工作文件\hospital\backend)
-2026-10-10 13:30:59.837 [main] DEBUG c.hospital.wechat.WechatApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
-2026-10-10 13:30:59.838 [main] INFO  c.hospital.wechat.WechatApplication - The following 1 profile is active: "local"
-2026-10-10 13:31:00.603 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-10-10 13:31:00.609 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-10-10 13:31:00.611 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-10-10 13:31:00.611 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2026-10-10 13:31:00.713 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-10-10 13:31:00.714 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 847 ms
-2026-10-10 13:31:00.751 [main] DEBUG c.h.wechat.config.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
-2026-10-10 13:31:01.280 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-10-10 13:31:01.289 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
-2026-10-10 13:31:01.293 [main] INFO  c.hospital.wechat.WechatApplication - Started WechatApplication in 1.85 seconds (process running for 2.21)
-2026-10-10 13:31:04.317 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-10-10 13:31:04.317 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-10-10 13:31:04.317 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2026-10-10 13:31:04.455 [http-nio-8080-exec-2] INFO  c.h.w.controller.WxLoginController - 微信登录请求, code: mock-dev-code
-2026-10-10 13:31:04.455 [http-nio-8080-exec-2] INFO  c.h.w.s.impl.WxLoginServiceImpl - 微信登录 openid: mock_openid_e1caf588
-2026-10-10 13:31:04.507 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-10-10 13:31:04.642 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ce76846
-2026-10-10 13:31:04.642 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-10-10 13:32:30.937 [http-nio-8080-exec-6] INFO  c.h.w.controller.WxLoginController - 微信登录请求, code: 0a3NcQkl2WGOzi4kkoll2Jgxi10NcQko
-2026-10-10 13:32:30.937 [http-nio-8080-exec-6] INFO  c.h.w.s.impl.WxLoginServiceImpl - 微信登录 openid: mock_openid_8cf76bb3
-2026-10-10 13:32:30.957 [http-nio-8080-exec-6] INFO  c.h.w.s.impl.WxLoginServiceImpl - 新用户注册, openid: mock_openid_8cf76bb3
-2026-10-10 13:32:30.964 [http-nio-8080-exec-6] INFO  c.h.w.s.impl.WxLoginServiceImpl - 用户 mock_openid_8cf76bb3 绑定手机号: 13800000000
+2026-10-15 12:18:06.992 [main] INFO  c.hospital.wechat.WechatApplication - Starting WechatApplication using Java 17.0.16 with PID 12072 (D:\工作文件\hospital\backend\target\classes started by admin in D:\工作文件\hospital\backend)
+2026-10-15 12:18:06.993 [main] DEBUG c.hospital.wechat.WechatApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2026-10-15 12:18:06.995 [main] INFO  c.hospital.wechat.WechatApplication - The following 1 profile is active: "local"
+2026-10-15 12:18:07.994 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-10-15 12:18:08.000 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-10-15 12:18:08.002 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-15 12:18:08.002 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-10-15 12:18:08.112 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-15 12:18:08.113 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1084 ms
+2026-10-15 12:18:08.156 [main] DEBUG c.h.wechat.config.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-10-15 12:18:08.858 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-10-15 12:18:08.869 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-10-15 12:18:08.874 [main] INFO  c.hospital.wechat.WechatApplication - Started WechatApplication in 2.385 seconds (process running for 2.836)
+2026-10-15 12:18:13.005 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-15 12:18:13.006 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-10-15 12:18:13.006 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-10-15 12:18:13.157 [http-nio-8080-exec-2] INFO  c.h.w.controller.WxLoginController - 微信登录请求, code: ui-mock
+2026-10-15 12:18:13.158 [http-nio-8080-exec-2] INFO  c.h.w.s.impl.WxLoginServiceImpl - 微信登录 openid: mock_openid_e3134923
+2026-10-15 12:18:13.239 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-10-15 12:18:13.416 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3540ada
+2026-10-15 12:18:13.417 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-10-15 12:18:13.481 [http-nio-8080-exec-2] INFO  c.h.w.s.impl.WxLoginServiceImpl - 新用户注册, openid: mock_openid_e3134923
+2026-10-15 12:18:13.491 [http-nio-8080-exec-2] INFO  c.h.w.s.impl.WxLoginServiceImpl - 用户 mock_openid_e3134923 绑定手机号: 13800000000
+2026-10-15 14:43:42.908 [main] INFO  c.hospital.wechat.WechatApplication - Starting WechatApplication using Java 17.0.16 with PID 31660 (D:\工作文件\hospital\backend\target\classes started by admin in D:\工作文件\hospital\backend)
+2026-10-15 14:43:42.909 [main] DEBUG c.hospital.wechat.WechatApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2026-10-15 14:43:42.909 [main] INFO  c.hospital.wechat.WechatApplication - The following 1 profile is active: "dev"
+2026-10-15 14:43:43.704 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-10-15 14:43:43.723 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-10-15 14:43:43.726 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-15 14:43:43.726 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-10-15 14:43:43.795 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-15 14:43:43.795 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 847 ms
+2026-10-15 14:43:43.846 [main] DEBUG c.h.wechat.config.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-10-15 14:43:44.436 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-10-15 14:43:44.439 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-10-15 14:43:44.454 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-10-15 14:43:44.468 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-10-15 15:16:10.122 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m26s366ms883µs600ns).

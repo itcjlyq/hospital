@@ -16,7 +16,9 @@ const RISK_TEXT = {
 
 Page({
   data: {
-    sessions: []
+    sessions: [],
+    loading: true,
+    loadError: false
   },
 
   onShow() {
@@ -24,6 +26,7 @@ Page({
   },
 
   async loadList() {
+    this.setData({ loading: true, loadError: false });
     try {
       const res = await api.triageList();
       const sessions = (res.data || []).map((s) => ({
@@ -32,10 +35,15 @@ Page({
         statusCls: (STATUS_TEXT[s.status] || {}).cls || '',
         riskText: s.riskLevel ? RISK_TEXT[s.riskLevel] : ''
       }));
-      this.setData({ sessions });
+      this.setData({ sessions, loading: false });
     } catch (e) {
       console.error(e);
+      this.setData({ loading: false, loadError: true });
     }
+  },
+
+  goNew() {
+    wx.navigateTo({ url: '/pages/triage/start' });
   },
 
   openSession(e) {

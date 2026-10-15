@@ -8,7 +8,7 @@
       data-path="{{item.pagePath}}"
       bindtap="switchTab"
     >
-      <text class="tab-icon">{{item.icon}}</text>
+      <view class="tab-ic ic {{selected === index ? item.iconOn : item.icon}}"></view>
       <text class="tab-text">{{item.text}}</text>
     </view>
   </view>

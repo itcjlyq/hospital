@@ -1,88 +1,91 @@
-<view class="page">
-  <view class="card">
-    <view class="row">
-      <text class="label">姓名/称呼</text>
-      <input class="input" placeholder="如：本人、张爸爸" value="{{form.realName}}" data-field="realName" bindinput="onInput" />
+<view class="page profile-edit-page">
+  <view class="form-card">
+    <view class="form-row">
+      <text class="form-label">姓名/称呼</text>
+      <input class="field-input" placeholder="如：本人、张爸爸" placeholder-class="input-ph" value="{{form.realName}}" data-field="realName" bindinput="onInput" />
     </view>
 
-    <view class="row">
-      <text class="label">性别</text>
+    <view class="form-row">
+      <text class="form-label">性别</text>
       <view class="gender-group">
-        <view class="gender {{form.gender === '男' ? 'active' : ''}}" data-gender="男" bindtap="chooseGender">男</view>
-        <view class="gender {{form.gender === '女' ? 'active' : ''}}" data-gender="女" bindtap="chooseGender">女</view>
+        <view class="gender {{form.gender === '男' ? 'active' : ''}}" hover-class="seg-hover" data-gender="男" bindtap="chooseGender">男</view>
+        <view class="gender {{form.gender === '女' ? 'active' : ''}}" hover-class="seg-hover" data-gender="女" bindtap="chooseGender">女</view>
       </view>
     </view>
 
-    <view class="row">
-      <text class="label">年龄</text>
-      <input class="input" type="number" placeholder="请输入年龄" value="{{form.age}}" data-field="age" bindinput="onInput" />
+    <view class="form-row">
+      <text class="form-label">年龄</text>
+      <input class="field-input" type="number" placeholder="请输入年龄" placeholder-class="input-ph" value="{{form.age}}" data-field="age" bindinput="onInput" />
     </view>
 
-    <view class="row">
-      <text class="label">关系</text>
-      <picker class="picker" range="{{relations}}" value="{{relationIndex}}" bindchange="onRelationChange">
-        <view class="picker-value">{{form.relation}} ▾</view>
+    <view class="form-row">
+      <text class="form-label">关系</text>
+      <picker class="flex1" range="{{relations}}" value="{{relationIndex}}" bindchange="onRelationChange">
+        <view class="picker-value">{{form.relation}}<text class="caret">▾</text></view>
       </picker>
     </view>
   </view>
 
-  <view class="card">
-    <view class="card-title">肝病相关高危因素</view>
+  <view class="form-card">
+    <view class="form-card-title">肝病相关高危因素</view>
 
     <view class="switch-row">
-      <text class="label">乙肝病毒携带/感染</text>
-      <switch checked="{{form.hbvCarrier === 1}}" color="#43A294" data-field="hbvCarrier" bindchange="onSwitch" />
+      <text class="sw-label">乙肝病毒携带 / 感染</text>
+      <switch checked="{{form.hbvCarrier === 1}}" color="#13A89E" data-field="hbvCarrier" bindchange="onSwitch" />
     </view>
     <view class="switch-row">
-      <text class="label">丙肝病毒携带/感染</text>
-      <switch checked="{{form.hcvCarrier === 1}}" color="#43A294" data-field="hcvCarrier" bindchange="onSwitch" />
+      <text class="sw-label">丙肝病毒携带 / 感染</text>
+      <switch checked="{{form.hcvCarrier === 1}}" color="#13A89E" data-field="hcvCarrier" bindchange="onSwitch" />
     </view>
     <view class="switch-row">
-      <text class="label">肝硬化</text>
-      <switch checked="{{form.cirrhosis === 1}}" color="#43A294" data-field="cirrhosis" bindchange="onSwitch" />
+      <text class="sw-label">肝硬化</text>
+      <switch checked="{{form.cirrhosis === 1}}" color="#13A89E" data-field="cirrhosis" bindchange="onSwitch" />
     </view>
     <view class="switch-row">
-      <text class="label">糖尿病</text>
-      <switch checked="{{form.diabetes === 1}}" color="#43A294" data-field="diabetes" bindchange="onSwitch" />
+      <text class="sw-label">糖尿病</text>
+      <switch checked="{{form.diabetes === 1}}" color="#13A89E" data-field="diabetes" bindchange="onSwitch" />
     </view>
     <view class="switch-row">
-      <text class="label">吸烟</text>
-      <switch checked="{{form.smoking === 1}}" color="#43A294" data-field="smoking" bindchange="onSwitch" />
+      <text class="sw-label">吸烟</text>
+      <switch checked="{{form.smoking === 1}}" color="#13A89E" data-field="smoking" bindchange="onSwitch" />
     </view>
     <view class="switch-row">
-      <text class="label">肝癌家族史</text>
-      <switch checked="{{form.familyLiverCancer === 1}}" color="#43A294" data-field="familyLiverCancer" bindchange="onSwitch" />
+      <text class="sw-label">肝癌家族史</text>
+      <switch checked="{{form.familyLiverCancer === 1}}" color="#13A89E" data-field="familyLiverCancer" bindchange="onSwitch" />
     </view>
 
-    <view class="row">
-      <text class="label">脂肪肝</text>
-      <picker class="picker" range="{{fattyOptions}}" value="{{fattyIndex}}" bindchange="onFattyChange">
-        <view class="picker-value">{{fattyOptions[fattyIndex]}} ▾</view>
+    <view class="form-row">
+      <text class="form-label">脂肪肝</text>
+      <picker class="flex1" range="{{fattyOptions}}" value="{{fattyIndex}}" bindchange="onFattyChange">
+        <view class="picker-value">{{fattyOptions[fattyIndex]}}<text class="caret">▾</text></view>
       </picker>
     </view>
 
     <view class="column-row">
-      <text class="label">饮酒史（频率/年限）</text>
-      <input class="input" placeholder="如：每周3次，约10年" value="{{form.alcoholHistory}}" data-field="alcoholHistory" bindinput="onInput" />
+      <text class="col-label">饮酒史（频率 / 年限）</text>
+      <input class="col-input" placeholder="如：每周3次，约10年" placeholder-class="input-ph" value="{{form.alcoholHistory}}" data-field="alcoholHistory" bindinput="onInput" />
     </view>
   </view>
 
-  <view class="card">
-    <view class="card-title">其他健康信息</view>
+  <view class="form-card">
+    <view class="form-card-title">其他健康信息</view>
     <view class="column-row">
-      <text class="label">过敏史/药物过敏</text>
-      <input class="input" placeholder="如：青霉素过敏" value="{{form.allergy}}" data-field="allergy" bindinput="onInput" />
+      <text class="col-label">过敏史 / 药物过敏</text>
+      <input class="col-input" placeholder="如：青霉素过敏" placeholder-class="input-ph" value="{{form.allergy}}" data-field="allergy" bindinput="onInput" />
     </view>
     <view class="column-row">
-      <text class="label">当前长期用药</text>
-      <input class="input" placeholder="如：恩替卡韦" value="{{form.currentMedication}}" data-field="currentMedication" bindinput="onInput" />
+      <text class="col-label">当前长期用药</text>
+      <input class="col-input" placeholder="如：恩替卡韦" placeholder-class="input-ph" value="{{form.currentMedication}}" data-field="currentMedication" bindinput="onInput" />
     </view>
     <view class="column-row">
-      <text class="label">备注</text>
-      <textarea class="textarea" placeholder="其他需要医生了解的情况" value="{{form.remark}}" data-field="remark" bindinput="onInput"></textarea>
+      <text class="col-label">备注</text>
+      <textarea class="col-textarea" placeholder="其他需要医生了解的情况" placeholder-class="input-ph" value="{{form.remark}}" data-field="remark" bindinput="onInput"></textarea>
     </view>
   </view>
 
-  <button class="save-btn" loading="{{saving}}" bindtap="onSave">保存档案</button>
-  <view class="privacy-tip">健康信息仅用于本次初筛与就诊参考，请确保信息真实</view>
+  <view class="footer-holder"></view>
+  <view class="footer-bar">
+    <button class="btn-primary save-btn" loading="{{saving}}" bindtap="onSave">保存档案</button>
+    <view class="privacy-tip disclaimer-mini">健康信息仅用于本次初筛与就诊参考，请确保信息真实</view>
+  </view>
 </view>

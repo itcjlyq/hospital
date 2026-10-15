@@ -1,35 +1,53 @@
-.page {
-  padding: 32rpx 28rpx 60rpx;
-}
+/* 我的 */
+.center-page { padding-top: 24rpx; }
 
+/* 用户头部 */
 .user-card {
-  background: linear-gradient(135deg, #43A294, #62bfb1);
-  border-radius: 22rpx;
-  padding: 40rpx 36rpx;
+  position: relative;
+  background: linear-gradient(132deg, #15B0A6 0%, #0E8E86 58%, #087F78 100%);
+  border-radius: 32rpx;
+  padding: 42rpx 36rpx;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  box-shadow: 0 18rpx 40rpx rgba(14, 142, 134, 0.24);
+}
+
+.user-glow {
+  position: absolute;
+  right: -70rpx;
+  top: -90rpx;
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .avatar {
-  width: 110rpx;
-  height: 110rpx;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
-  font-size: 48rpx;
+  position: relative;
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 32rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2rpx solid rgba(255, 255, 255, 0.45);
+  color: #FFFFFF;
+  font-size: 46rpx;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: none;
 }
 
 .user-info {
+  position: relative;
   margin-left: 26rpx;
 }
 
 .nickname {
-  font-size: 36rpx;
-  font-weight: 600;
-  color: #fff;
+  font-size: 37rpx;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .phone {
@@ -38,55 +56,76 @@
   color: rgba(255, 255, 255, 0.88);
 }
 
+/* 菜单组 */
+.menu-group { margin-top: 30rpx; }
+
+.group-label {
+  margin: 0 8rpx 16rpx;
+  font-size: 24rpx;
+  color: #84929F;
+}
+
 .menu {
-  margin-top: 26rpx;
-  background: #fff;
-  border-radius: 20rpx;
+  border-radius: 28rpx;
   overflow: hidden;
+  box-shadow: 0 8rpx 30rpx rgba(24, 59, 74, 0.05);
 }
 
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 30rpx 28rpx;
-  border-bottom: 1rpx solid #f0f4f3;
+  padding: 28rpx 28rpx;
+  border-bottom: 1rpx solid #F0F4F2;
 }
 
-.menu-item:last-child {
-  border-bottom: none;
-}
+.menu-item:last-child { border-bottom: none; }
 
-.menu-icon {
-  font-size: 38rpx;
+.menu-hover { background: #F8FBFB; }
+
+.menu-ic {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 22rpx;
+  background: #E8F7F4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 20rpx;
+  flex: none;
 }
 
 .menu-name {
-  flex: 1;
   font-size: 29rpx;
-  color: #2b3a37;
+  font-weight: 500;
+  color: #183B4A;
 }
 
-.menu-arrow {
-  color: #c2ccc9;
-  font-size: 40rpx;
+.menu-sub {
+  flex: 1;
+  text-align: right;
+  margin-right: 12rpx;
+  font-size: 22rpx;
+  color: #A6B4BD;
 }
+
+.menu-arrow { flex: none; }
 
 .scope-note {
-  margin: 26rpx 12rpx;
+  margin: 30rpx 14rpx;
   font-size: 23rpx;
-  color: #93a5a1;
-  line-height: 1.7;
+  color: #93A2AB;
+  line-height: 1.75;
 }
 
 .logout-btn {
-  margin-top: 10rpx;
-  background: #fff;
-  color: #d9534f;
-  border-radius: 48rpx;
+  height: 92rpx;
+  line-height: 92rpx;
   font-size: 30rpx;
 }
 
-.logout-btn::after {
-  border: none;
+.version {
+  margin-top: 34rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #B0BCC4;
 }

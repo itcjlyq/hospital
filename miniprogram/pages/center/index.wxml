@@ -1,5 +1,7 @@
-<view class="page">
+<view class="page center-page has-tabbar">
+  <!-- 用户头部 -->
   <view class="user-card">
+    <view class="user-glow"></view>
     <view class="avatar">{{userInfo.nickName ? userInfo.nickName[0] : '用'}}</view>
     <view class="user-info">
       <view class="nickname">{{userInfo.nickName || '微信用户'}}</view>
@@ -7,21 +9,34 @@
     </view>
   </view>
 
-  <view class="menu">
-    <view class="menu-item" bindtap="goProfile">
-      <text class="menu-icon">🗂️</text>
-      <text class="menu-name">健康档案管理</text>
-      <text class="menu-arrow">›</text>
+  <!-- 我的健康 -->
+  <view class="menu-group">
+    <view class="group-label">我的健康</view>
+    <view class="menu card">
+      <view class="menu-item" hover-class="menu-hover" bindtap="goProfile">
+        <view class="menu-ic"><view class="ic ic-profile"></view></view>
+        <text class="menu-name">健康档案管理</text>
+        <text class="menu-sub">本人 / 家属病史</text>
+        <view class="ic ic-sm ic-chevron menu-arrow"></view>
+      </view>
+      <view class="menu-item" hover-class="menu-hover" bindtap="goReport">
+        <view class="menu-ic"><view class="ic ic-flask"></view></view>
+        <text class="menu-name">检查指标解读</text>
+        <text class="menu-sub">肝功能 / AFP / 超声</text>
+        <view class="ic ic-sm ic-chevron menu-arrow"></view>
+      </view>
     </view>
-    <view class="menu-item" bindtap="goReport">
-      <text class="menu-icon">🧪</text>
-      <text class="menu-name">检查指标解读</text>
-      <text class="menu-arrow">›</text>
-    </view>
-    <view class="menu-item" bindtap="goNotice">
-      <text class="menu-icon">📄</text>
-      <text class="menu-name">免责声明与隐私政策</text>
-      <text class="menu-arrow">›</text>
+  </view>
+
+  <!-- 隐私与协议 -->
+  <view class="menu-group">
+    <view class="group-label">隐私与协议</view>
+    <view class="menu card">
+      <view class="menu-item" hover-class="menu-hover" bindtap="goNotice">
+        <view class="menu-ic"><view class="ic ic-shield"></view></view>
+        <text class="menu-name">免责声明与隐私政策</text>
+        <view class="ic ic-sm ic-chevron menu-arrow"></view>
+      </view>
     </view>
   </view>
 
@@ -29,5 +44,7 @@
     本小程序仅提供健康初筛、导诊与科普解读，不提供诊断、处方或治疗方案。
   </view>
 
-  <button class="logout-btn" bindtap="logout">退出登录</button>
+  <button class="btn-danger-ghost logout-btn" bindtap="logout">退出登录</button>
+
+  <view class="version">肝健康助手 · 演示版本 v0.1</view>
 </view>

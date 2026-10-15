@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "肝健康初筛"
+  "navigationBarTitleText": "肝健康助手",
+  "enablePullDownRefresh": false
 }

@@ -1,59 +1,92 @@
-<view class="page" wx:if="{{detail}}">
+<view class="page report-detail" wx:if="{{detail}}">
 
   <!-- 风险等级头 -->
   <view class="level-card level-{{level.cls}}">
-    <view class="level-label">初筛风险等级</view>
-    <view class="level-text">{{level.text}}</view>
+    <view class="level-glow"></view>
+    <view class="level-row">
+      <view class="level-badge">
+        <view wx:if="{{detail.status === 'EMERGENCY'}}" class="ic ic-lg lb-ic lb-emergency"></view>
+        <view wx:else class="ic ic-lg lb-ic lb-shield"></view>
+      </view>
+      <view class="level-main">
+        <view class="level-label">初筛风险等级</view>
+        <view class="level-text">{{level.text}}</view>
+      </view>
+    </view>
     <view class="level-complaint">主诉：{{detail.chiefComplaint}}</view>
   </view>
 
   <!-- 急症卡 -->
   <view wx:if="{{detail.status === 'EMERGENCY'}}" class="emergency-card">
-    <view class="em-title">🚨 检测到急症信号</view>
+    <view class="em-title">
+      <view class="ic ic-sm ic-alert-red"></view>
+      <text>检测到急症信号</text>
+    </view>
     <view class="em-content">{{detail.assessment && detail.assessment.conclusion || '请立即前往最近医院急诊，或拨打急救电话。'}}</view>
-    <button class="call-btn" bindtap="callEmergency">立即拨打 120</button>
+    <button class="call-btn" bindtap="callEmergency">
+      <view class="ic ic-sm ic-phone call-ic"></view>
+      <text>立即拨打 120</text>
+    </button>
     <view class="em-sub">在等待救援时保持静卧，不要自行服药或进食饮水（遵急救指导除外）。</view>
   </view>
 
   <!-- 正常报告 -->
   <block wx:elif="{{detail.assessment}}">
     <view class="sec" wx:if="{{detail.assessment.possibleDirections.length}}">
-      <view class="sec-title">可能的方向</view>
+      <view class="sec-title">
+        <view class="sec-bar"></view>
+        <text>可能的方向</text>
+      </view>
       <view class="sec-body">
         <view class="bullet" wx:for="{{detail.assessment.possibleDirections}}" wx:key="*this">{{item}}</view>
       </view>
     </view>
 
     <view class="sec" wx:if="{{detail.assessment.suggestedDepartments.length}}">
-      <view class="sec-title">建议就诊科室</view>
+      <view class="sec-title">
+        <view class="sec-bar"></view>
+        <text>建议就诊科室</text>
+      </view>
       <view class="chip-wrap">
         <text class="chip" wx:for="{{detail.assessment.suggestedDepartments}}" wx:key="*this">{{item}}</text>
       </view>
     </view>
 
     <view class="sec" wx:if="{{detail.assessment.suggestedExams.length}}">
-      <view class="sec-title">建议完善的检查</view>
+      <view class="sec-title">
+        <view class="sec-bar"></view>
+        <text>建议完善的检查</text>
+      </view>
       <view class="chip-wrap">
-        <text class="chip exam" wx:for="{{detail.assessment.suggestedExams}}" wx:key="*this">{{item}}</text>
+        <text class="chip chip-blue" wx:for="{{detail.assessment.suggestedExams}}" wx:key="*this">{{item}}</text>
       </view>
     </view>
 
     <view class="sec" wx:if="{{detail.assessment.lifestyleAdvice.length}}">
-      <view class="sec-title">生活建议</view>
+      <view class="sec-title">
+        <view class="sec-bar"></view>
+        <text>生活建议</text>
+      </view>
       <view class="sec-body">
         <view class="bullet" wx:for="{{detail.assessment.lifestyleAdvice}}" wx:key="*this">{{item}}</view>
       </view>
     </view>
 
     <view class="sec" wx:if="{{detail.assessment.conclusion}}">
-      <view class="sec-title">总结与就医提示</view>
+      <view class="sec-title">
+        <view class="sec-bar"></view>
+        <text>总结与就医提示</text>
+      </view>
       <view class="sec-text">{{detail.assessment.conclusion}}</view>
     </view>
   </block>
 
   <!-- 对话回顾 -->
   <view class="sec">
-    <view class="sec-title">问诊回顾</view>
+    <view class="sec-title">
+      <view class="sec-bar"></view>
+      <text>问诊回顾</text>
+    </view>
     <view class="history">
       <view wx:for="{{messages}}" wx:key="index" class="h-row {{item.role === 'USER' ? 'user' : 'sys'}}">
         <view wx:if="{{item.role !== 'SYSTEM'}}">
@@ -63,12 +96,12 @@
     </view>
   </view>
 
-  <view class="disclaimer">
+  <view class="disclaimer disclaimer-mini">
     本报告由 AI 基于你提供的信息生成，仅供健康科普与初筛参考，不能替代医生面诊或药师审核。
   </view>
 
   <view class="footer-btns">
-    <button class="ghost-btn" bindtap="goHome">返回首页</button>
-    <button class="primary-btn" bindtap="newTriage">再做一次初筛</button>
+    <button class="btn-ghost ghost-btn" bindtap="goHome">返回首页</button>
+    <button class="btn-primary primary-btn" bindtap="newTriage">再做一次初筛</button>
   </view>
 </view>

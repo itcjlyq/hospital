@@ -14,10 +14,10 @@
   ],
   "tabBar": {
     "custom": true,
-    "color": "#888888",
-    "selectedColor": "#43A294",
+    "color": "#84929F",
+    "selectedColor": "#13A89E",
     "backgroundColor": "#ffffff",
-    "borderStyle": "black",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/home/index",
@@ -34,11 +34,11 @@
     ]
   },
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#43A294",
-    "navigationBarTitleText": "肝健康初筛",
-    "navigationBarTextStyle": "white",
-    "backgroundColor": "#F5FBF9"
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "肝健康助手",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F8FA"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

@@ -1,7 +1,7 @@
 <view class="login-page">
   <view class="hero">
-    <view class="hero-badge">肝</view>
-    <view class="hero-title">肝健康智能初筛</view>
+    <view class="hero-badge"><view class="ic ic-xl badge-ic"></view></view>
+    <view class="hero-title">肝健康助手</view>
     <view class="hero-sub">肝病风险初筛 · 智能导诊 · 检查解读</view>
   </view>
 
@@ -10,16 +10,16 @@
     <view class="tip-text">
       本小程序提供健康信息收集与症状初筛、就医科室与检查建议、检查指标科普解读，
       <text class="emph">不能替代医生面诊，不提供诊断与处方</text>。
-      出现呕血、黑便、意识障碍等紧急情况请立即就医或拨打120。
+      出现呕血、黑便、意识障碍等紧急情况请立即就医或拨打 120。
     </view>
 
-    <button class="login-btn" loading="{{loggingIn}}" bindtap="handleLogin">
+    <button class="login-btn btn-primary" loading="{{loggingIn}}" bindtap="handleLogin">
       微信一键登录
     </button>
 
     <view class="agreement" bindtap="toggleAgree">
       <view class="checkbox {{agreed ? 'checked' : ''}}">
-        <text wx:if="{{agreed}}" class="check-mark">✓</text>
+        <view wx:if="{{agreed}}" class="check-mark"></view>
       </view>
       <text class="agree-text">我已阅读并同意</text>
       <text class="link-text" catchtap="openAgreement">《免责声明与隐私政策》</text>

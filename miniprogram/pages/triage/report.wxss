@@ -1,128 +1,196 @@
-.page {
-  padding: 28rpx 28rpx 60rpx;
-}
+/* 初筛报告 */
+.report-detail { padding: 28rpx 28rpx 60rpx; }
 
+/* ---------- 风险等级头 ---------- */
 .level-card {
-  border-radius: 22rpx;
-  padding: 40rpx 34rpx;
-  color: #fff;
+  position: relative;
+  border-radius: 32rpx;
+  padding: 40rpx 34rpx 34rpx;
+  color: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 18rpx 40rpx rgba(24, 59, 74, 0.12);
 }
 
-.level-low {
-  background: linear-gradient(135deg, #43A294, #62bfb1);
+.level-glow {
+  position: absolute;
+  right: -80rpx;
+  top: -100rpx;
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.level-medium {
-  background: linear-gradient(135deg, #d9a23a, #e6b95e);
+.level-low { background: linear-gradient(132deg, #15B0A6, #0B8179); }
+.level-medium { background: linear-gradient(132deg, #E0A43F, #C98A2B); }
+.level-high { background: linear-gradient(132deg, #E88064, #D96248); }
+.level-emergency { background: linear-gradient(132deg, #E0564C, #C5382F); }
+
+.level-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
 }
 
-.level-high {
-  background: linear-gradient(135deg, #e2674f, #ef846f);
+.level-badge {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.18);
+  border: 2rpx solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
 
-.level-emergency {
-  background: linear-gradient(135deg, #c83c31, #e25a50);
+.lb-ic {
+  width: 52rpx;
+  height: 52rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
+
+.lb-shield {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2l7 2.6v5.3c0 4.6-2.9 7.7-7 9-4.1-1.3-7-4.4-7-9V5.8z'/%3E%3Cpath d='M9.1 11.9l2.1 2.1 3.8-3.9'/%3E%3C/svg%3E");
+}
+
+.lb-emergency {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.6 21.8 20H2.2z'/%3E%3Cpath d='M12 9.4v4.8'/%3E%3Cpath d='M12 17.2h.01'/%3E%3C/svg%3E");
+}
+
+.level-main { flex: 1; }
 
 .level-label {
-  font-size: 26rpx;
-  opacity: 0.9;
+  font-size: 24rpx;
+  opacity: 0.88;
 }
 
 .level-text {
-  margin-top: 10rpx;
-  font-size: 44rpx;
+  margin-top: 8rpx;
+  font-size: 40rpx;
   font-weight: 700;
+  letter-spacing: 1rpx;
 }
 
 .level-complaint {
-  margin-top: 18rpx;
+  position: relative;
+  margin-top: 26rpx;
+  padding-top: 22rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.22);
   font-size: 25rpx;
   opacity: 0.92;
   line-height: 1.6;
 }
 
+/* ---------- 急症卡 ---------- */
 .emergency-card {
   margin-top: 24rpx;
-  background: #fff1ef;
-  border: 1rpx solid #f5c2bb;
-  border-radius: 20rpx;
-  padding: 30rpx 28rpx;
+  background: #FDF1EF;
+  border: 1rpx solid #F6CFC9;
+  border-radius: 28rpx;
+  padding: 32rpx 30rpx;
 }
 
 .em-title {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
   font-size: 32rpx;
   font-weight: 700;
-  color: #c83c31;
+  color: #C5382F;
 }
 
 .em-content {
   margin-top: 16rpx;
   font-size: 28rpx;
-  line-height: 1.7;
-  color: #b23a30;
+  line-height: 1.75;
+  color: #A9372E;
 }
 
 .call-btn {
-  margin-top: 24rpx;
-  background: #c83c31;
-  color: #fff;
-  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  margin-top: 26rpx;
+  background: #D6453B;
+  color: #FFFFFF;
+  border-radius: 999rpx;
   font-size: 32rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  box-shadow: 0 14rpx 28rpx rgba(214, 69, 59, 0.28);
 }
 
-.call-btn::after {
-  border: none;
-}
+.call-btn::after { border: none; }
+
+.call-ic { width: 34rpx; height: 34rpx; }
 
 .em-sub {
-  margin-top: 16rpx;
+  margin-top: 18rpx;
   font-size: 23rpx;
-  color: #c07a74;
+  color: #C98A83;
   line-height: 1.6;
 }
 
+/* ---------- 内容分节 ---------- */
 .sec {
   margin-top: 24rpx;
-  background: #fff;
-  border-radius: 20rpx;
-  padding: 26rpx 28rpx;
+  background: #FFFFFF;
+  border-radius: 28rpx;
+  padding: 28rpx 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(24, 59, 74, 0.05);
 }
 
 .sec-title {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
   font-size: 29rpx;
   font-weight: 600;
-  color: #1f3a36;
-  margin-bottom: 16rpx;
+  color: #183B4A;
+  margin-bottom: 20rpx;
+}
+
+.sec-bar {
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 6rpx;
+  background: linear-gradient(180deg, #13A89E, #7FD4CC);
 }
 
 .sec-body {
   display: flex;
   flex-direction: column;
-  gap: 12rpx;
+  gap: 14rpx;
 }
 
 .bullet {
   position: relative;
-  padding-left: 26rpx;
+  padding-left: 30rpx;
   font-size: 27rpx;
-  color: #4d5d59;
-  line-height: 1.6;
+  color: #46555E;
+  line-height: 1.65;
 }
 
 .bullet::before {
-  content: '·';
+  content: '';
   position: absolute;
-  left: 8rpx;
-  top: -6rpx;
-  font-size: 40rpx;
-  color: #43A294;
+  left: 6rpx;
+  top: 16rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #13A89E;
 }
 
 .sec-text {
   font-size: 27rpx;
-  color: #4d5d59;
-  line-height: 1.7;
+  color: #46555E;
+  line-height: 1.75;
 }
 
 .chip-wrap {
@@ -131,66 +199,34 @@
   gap: 14rpx;
 }
 
-.chip {
-  background: #e8f5f2;
-  color: #2e8b7d;
-  font-size: 25rpx;
-  padding: 10rpx 22rpx;
-  border-radius: 30rpx;
-}
-
-.chip.exam {
-  background: #eef3fb;
-  color: #3f6ea8;
-}
-
+/* 问诊回顾 */
 .history {
-  background: #f8fbfb;
-  border-radius: 14rpx;
-  padding: 18rpx 22rpx;
+  background: #F6F9FA;
+  border-radius: 20rpx;
+  padding: 20rpx 24rpx;
 }
 
 .h-row {
   font-size: 25rpx;
-  color: #55645f;
-  line-height: 1.8;
+  color: #5E6D78;
+  line-height: 1.85;
 }
 
 .h-role {
-  color: #2e8b7d;
+  color: #0B7F76;
+  font-weight: 500;
 }
 
 .disclaimer {
-  margin-top: 26rpx;
-  font-size: 23rpx;
-  color: #98a8a4;
-  line-height: 1.7;
+  margin-top: 28rpx;
   padding: 0 8rpx;
 }
 
 .footer-btns {
   display: flex;
   gap: 20rpx;
-  margin-top: 30rpx;
+  margin-top: 32rpx;
 }
 
-.primary-btn {
-  flex: 1;
-  background: #43A294;
-  color: #fff;
-  border-radius: 46rpx;
-  font-size: 29rpx;
-}
-
-.ghost-btn {
-  flex: 1;
-  background: #f2f5f4;
-  color: #456;
-  border-radius: 46rpx;
-  font-size: 29rpx;
-}
-
-.primary-btn::after,
-.ghost-btn::after {
-  border: none;
-}
+.primary-btn { flex: 1; height: 92rpx; line-height: 92rpx; font-size: 29rpx; }
+.ghost-btn { flex: 1; height: 92rpx; line-height: 92rpx; font-size: 29rpx; }
